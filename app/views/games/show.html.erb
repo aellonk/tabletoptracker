@@ -1,4 +1,24 @@
-<%= @game.name %>
+<div class="gameName" data-id="<%=@game.id%>"><%= @game.name %></div>
+<ul id="user-games"></ul>
+<!-- <a href="#" class="js-next" data-id="<%=@game.id%>">Next...</a> -->
 
+
+<script type="text/javascript" charset="utf-8">
+$(function () {
+var $userGames = $('#user-games');
+	var gameId = parseInt($(".gameName").attr("data-id"));
+   var gameUrl = "/games/" + gameId + ".json";
+$.get(gameUrl, function (data) {
+    games = data.response.name;
+    for (var i = 0; i < games.length; i++) {
+        var game = game[i];
+        $userGames.append('<li class="game">'+game+'</li>');
+    };
+    
+});
+});
+
+      // $(".gameName").text(data["name"]);
+ </script>
 
 
