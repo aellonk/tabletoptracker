@@ -53,3 +53,19 @@ function getMatches() {
 }
 
 
+class Game {
+  constructor(obj) {
+    this.id = obj.id
+    this.name = obj.name
+  }
+
+  // class method, called with:  Game.newGameForm()
+  static newGameForm() {
+    return (`
+      <form>
+        <input type="text" placeholder="enter data here">
+      </form>
+    `)
+  }
+}
+
