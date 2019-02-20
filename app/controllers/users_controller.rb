@@ -26,7 +26,7 @@ class UsersController < ApplicationController
 			@fav = @user.games.favorite 
 			respond_to do |format|
       			format.html { render :show }      # Render post in HTML format
-      			format.json { render json: @user } # Render post in JSON format
+      			format.json { render json: @user, include: "games.matches" } # Render post in JSON format
    			end
 		end
 	end

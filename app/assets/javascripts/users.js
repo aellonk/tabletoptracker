@@ -15,6 +15,7 @@ const getUniqueGames = () => {
     let $p = $("#user-games");
     let games = data.games;
 
+
     // find unique games based on name and ID
   var unique = games.filter((value, index, self) =>
       index === self.findIndex((t) => (
@@ -26,31 +27,41 @@ const getUniqueGames = () => {
     for (var i = 0; i < unique.length; i++) {
     var game = unique[i];
     $p.append('<h2>'+ game.name +'</h2>');
+    
+    // filter the unique games to show only this user's games
+    var gameMatchList = game.matches.filter(match => 
+      match.user_id === userId
+    );
 
+    // list the user's matches for each unique game
+    let gameMatchInfo = gameMatchList.map(match => {
+      $p.append('<h5>'+ match.match_date + match.win + match.game_id + match.user_id +'</h5>');
+    })
     };
+
 
     });
   });
  }
 
 
-function getMatches() {
-  $("a.userName").on('click', function (e) {
-    e.preventDefault();
-    let userId = parseInt($(".userName").attr("data-id"));
-   	let userURL = ("/users/" + userId + ".json")
-	$.get(userURL, function(data) {
-		let $table = $("#user-matches");
-		let matches = data.matches;
-      	for (var i = 0; i < matches.length; i++) {
-        var match = matches[i];
-        $table.append('<tr><td>' + match.match_date + '</td><td>' + match.win + '</td></tr>'
-        );
-        // find game name from match.game_id 
-    };
-    });
-  });
-}
+// function getMatches() {
+//   $("a.userName").on('click', function (e) {
+//     e.preventDefault();
+//     let userId = parseInt($(".userName").attr("data-id"));
+//    	let userURL = ("/users/" + userId + ".json")
+// 	$.get(userURL, function(data) {
+// 		let $table = $("#user-matches");
+// 		let matches = data.matches;
+//       	for (var i = 0; i < matches.length; i++) {
+//         var match = matches[i];
+//         $table.append('<tr><td>' + match.match_date + '</td><td>' + match.win + '</td></tr>'
+//         );
+//         // find game name from match.game_id 
+//     };
+//     });
+//   });
+// }
 
 
 class Game {
@@ -67,5 +78,24 @@ class Game {
       </form>
     `)
   }
+}
+
+
+// .gameHTML() is an instance method, called on an instance of Game class
+Game.prototype.gameHTML = function () {
+  // assuming a game has_many matches, you could map over that array of matches
+  // and add the resulting array of mapped items to the output below
+
+  let gameMatches = this.matches.map(match => {
+   return (`
+     <div>${match.won}</div>
+   `)
+  })
+
+  return (`
+    <div>${this.id}</div>
+    <h3>${this.name}</h3>
+    // <h2>${gameMatches}</h2>
+  `)
 }
 
