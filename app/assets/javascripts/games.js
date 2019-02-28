@@ -1,11 +1,11 @@
 $(function () {
-	getGame()
+	getGameInfo()
   
 })
 
 
 
-function getGame() { 
+function getGameInfo() { 
 	// var $ul = $('#user-games');
 	// var gameId = parseInt($(".gameName").attr("data-id"));
  //   	var gameUrl = "/games/" + gameId + ".json";
@@ -22,7 +22,19 @@ function getGame() {
     $(".js-next").on("click", function() {
 	    var nextId = parseInt($(".js-next").attr("data-id")) + 1;
 	    $.get("/games/" + nextId + ".json", function(data) {
-	      $(".matchDate").text(data["matches"]);
+	    	
+	    	$(".gameName").append('<p class="game">'+data.name+'</p>');
+	      	
+
+	      // for (var i = 0; i < data.matches.length; i++) {
+       //  	var match = match[i];
+       //  	$(".matchDate").append('<p class="match">'+match.match_date+'</p>');
+    	  // };
+
+
+	data.matches.map(match => {
+      $(".gameName").append('<li>' + match.match_date + '</li><li>' + match.user_id + '</li>');
+    })
 	     
 	      // re-set the id to current on the link
 	      $(".js-next").attr("data-id", data["id"]);
@@ -34,6 +46,6 @@ function getGame() {
 }
 
 
-function getNextGame{
+// function getNextGame{
 
- }
+//  }
