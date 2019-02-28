@@ -20,8 +20,11 @@ class GamesController < ApplicationController
 	end
 
 	def show
-		@game = Game.find(params[:id])
-		render json: @game, status: 200
+		@game = Game.find(params[:id]) 
+		respond_to do |format|
+      			format.html { render :show }      # Render post in HTML format
+      			format.json { render json: @game, status: 200} # Render post in JSON format
+   		end
 	end
 
 	
