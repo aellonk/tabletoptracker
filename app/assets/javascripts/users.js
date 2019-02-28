@@ -1,7 +1,7 @@
 $(function () {
 
   getUniqueGames()
-    getMatches()
+    // getMatches()
 })
 
 
@@ -35,7 +35,8 @@ const getUniqueGames = () => {
 
     // list the user's matches for each unique game
     let gameMatchInfo = gameMatchList.map(match => {
-      $p.append('<h5>'+ match.match_date + match.win + match.game_id + match.user_id +'</h5>');
+      $p.append('<tbody><tr><td>' + match.match_date + '</td><td>' + match.win + '</td></tr></tbody>'
+);
     })
     };
 
