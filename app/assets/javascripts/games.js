@@ -5,6 +5,7 @@ $(function () {
 
 
 
+
 function getNextGameInfo() { 
 
     $(".js-next").on("click", function() {
