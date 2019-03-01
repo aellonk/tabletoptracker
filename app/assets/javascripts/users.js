@@ -1,8 +1,8 @@
 $(function () {
 
   getUniqueGames()
-    // getMatches()
-})
+   getNewGameFormFromRails()
+ })
 
 
 const getUniqueGames = () => {
@@ -16,6 +16,7 @@ const getUniqueGames = () => {
     let games = data.games;
 
 
+
     // find unique games based on name and ID
   var unique = games.filter((value, index, self) =>
       index === self.findIndex((t) => (
@@ -25,8 +26,11 @@ const getUniqueGames = () => {
 
     // iterate over unique games and append the game name to the DOM
     for (var i = 0; i < unique.length; i++) {
-    var game = unique[i];
-    $p.append('<h2>'+ game.name +'</h2>');
+      var game = unique[i];
+    
+      let newGame = new Game(game);
+      let newGameHtml = newGame.gameHTML();
+      $("#user-games").append(newGameHtml);
     
     // filter the unique games to show only this user's games
     var gameMatchList = game.matches.filter(match => 
@@ -64,39 +68,35 @@ const getUniqueGames = () => {
 //   });
 // }
 
-
 class Game {
   constructor(obj) {
     this.id = obj.id
     this.name = obj.name
   }
 
-  // class method, called with:  Game.newGameForm()
-  static newGameForm() {
-    return (`
-      <form>
-        <input type="text" placeholder="enter data here">
-      </form>
-    `)
-  }
 }
 
 
 // .gameHTML() is an instance method, called on an instance of Game class
 Game.prototype.gameHTML = function () {
-  // assuming a game has_many matches, you could map over that array of matches
-  // and add the resulting array of mapped items to the output below
-
-  let gameMatches = this.matches.map(match => {
-   return (`
-     <div>${match.won}</div>
-   `)
-  })
-
   return (`
-    <div>${this.id}</div>
-    <h3>${this.name}</h3>
-    // <h2>${gameMatches}</h2>
+    <h2>${this.name}</h2>
   `)
 }
+
+// form: get the Rails form, pull it over as html
+function getNewGameFormFromRails() {
+  $('a#get-new-game-form').on('click', function (e) {
+     e.preventDefault()
+
+     $.ajax({
+       url: 'https://localhost:3000/games/new',
+       method: 'get',
+       dataType: 'html'
+     }).done(function (response) {
+       $('div#new-game-form').html(response);
+     })
+  })
+}
+
 
