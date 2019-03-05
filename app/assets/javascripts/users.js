@@ -78,7 +78,7 @@ class Game {
 // .gameHTML() is an instance method, called on an instance of Game class
 Game.prototype.gameHTML = function () {
   return (`
-    <h2>${this.name}</h2>
+    <a href="/games/${this.id}" ><h2>${this.name}</h2></a>
   `)
 }
 
