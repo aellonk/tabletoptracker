@@ -12,11 +12,11 @@ function getNextGameInfo() {
 	    var nextId = parseInt($(".js-next").attr("data-id")) + 1;
 	    $.get("/games/" + nextId + ".json", function(data) {
 	    	
-	    	$(".gameName").append('<h3 class="game">'+data.name+'</h3>');
+	    	$(".gameName").append(`<section class="jumbotron text-center"><div class="container"><h1 class="jumbotron-heading">${data.name}</h1></div></section>`);
 
 	data.matches.map(match => {
 		let matchUser = data.users.map(user => {
-     		$(".gameName").append('<p>User: ' + user.name + '</p><p>Match Date: '+ match.match_date + '</p><p>Won? ' + match.win + '</p><br>');
+     		$(".gameName").append(`<div class="album py-5 bg-light"><div class="container"><div class="row"><div class="col-md-4"><div class="card mb-4 shadow-sm"><div class="card-body"><p class="card-text">Player: ${user.name} </p><p class="card-text">Match Date: ${ match.match_date}</p><p class="card-text">Win? ${match.win}</p></div></div></div></div></div>`);
     	})
       
     })
