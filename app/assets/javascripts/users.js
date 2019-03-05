@@ -6,8 +6,6 @@ $(function () {
 
 
 const getUniqueGames = () => {
-  $("a.userName").on('click', function (e) {
-    e.preventDefault();
     let userId = parseInt($(".userName").attr("data-id"));
     let userURL = ("/users/" + userId + ".json")
 
@@ -46,7 +44,7 @@ const getUniqueGames = () => {
 
 
     });
-  });
+
  }
 
 
