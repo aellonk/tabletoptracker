@@ -1,22 +1,51 @@
-<h1><%= @game.name %></h1>
-<ul>
+<main role="main">
+
+  <section class="jumbotron text-center">
+    <div class="container">
+      <h1 class="jumbotron-heading"><%= @game.name %></h1>
+    </div>
+  </section>
+<div class="album py-5 bg-light">
+<div class="container">
+<div class="row">
 	<% @game.matches.map do |match| %>
-		<li><%= match.user.name %> </li>
-		<li>Match Date: <%= match.match_date %> </li>
-		<li><%= match.win %> </li><br>
-		<% if match.scythe %>
-			<li>Faction: <%= match.scythe.faction %></li>
-			<li>Player Mat: <%= match.scythe.player_mat %></li>
-			<li>My Score: <%= match.scythe.score %></li>
-			<li>Winning Score: <%= match.scythe.winning_score %></li>
-			<li>Total Turns: <%= match.scythe.turns %></li>
-			<li>Airships? <%= match.scythe.airships %></li>
-			<li>Winner: <%= match.scythe.winner %></li>
-		<% end %>
- <% end %>
-</ul>
+
+		
+	        <div class="col-md-4">
+	          <div class="card mb-4 shadow-sm">
+	            <div class="card-body">
+	              <p class="card-text">Player: <%= match.user.name %></p>
+	              <p class="card-text">Match Date: <%= match.match_date %></p>
+	               <p class="card-text">Win? <%= match.win %></p>
+	          <% if match.scythe %>
+				<p class="card-text">Faction: <%= match.scythe.faction %></p>
+				<p class="card-text">Player Mat: <%= match.scythe.player_mat %></p>
+				<p class="card-text">My Score: <%= match.scythe.score %></p>
+				<p class="card-text">Winning Score: <%= match.scythe.winning_score %></p>
+				<p class="card-text">Total Turns: <%= match.scythe.turns %></p>
+				<p class="card-text">Airships? <%= match.scythe.airships %></p>
+				<p class="card-text">Winner: <%= match.scythe.winner %></p>
+				<% end %>
+	            </div>
+	          </div>
+	        </div>
+ 	<% end %>
+
+
+
+
+
+
+		
+</div>
+</div>
 
 <a class="js-next" data-id="<%=@game.id%>">Next Game</a>
 
 <div class="gameName" >
 </div>
+
+</main>
+
+
+
