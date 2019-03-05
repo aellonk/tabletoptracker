@@ -2,8 +2,17 @@
 <ul>
 	<% @game.matches.map do |match| %>
 		<li><%= match.user.name %> </li>
-		<li><%= match.match_date %> </li>
+		<li>Match Date: <%= match.match_date %> </li>
 		<li><%= match.win %> </li><br>
+		<% if match.scythe %>
+			<li>Faction: <%= match.scythe.faction %></li>
+			<li>Player Mat: <%= match.scythe.player_mat %></li>
+			<li>My Score: <%= match.scythe.score %></li>
+			<li>Winning Score: <%= match.scythe.winning_score %></li>
+			<li>Total Turns: <%= match.scythe.turns %></li>
+			<li>Airships? <%= match.scythe.airships %></li>
+			<li>Winner: <%= match.scythe.winner %></li>
+		<% end %>
  <% end %>
 </ul>
 
