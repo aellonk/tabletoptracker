@@ -10,8 +10,15 @@ def self.favorite
 	 		game.matches.count
 	 		game.name
 	 	end
-
-	games.group_by{|x| x}.sort_by{|k, v| -v.size}.map{|game| game.first}.first
+	sorted = games.group_by{|name| name}.sort_by{|k, v| -v.size}
+	if sorted[0][1].size == sorted[1][1].size
+		top = []
+		top.push(sorted.map{|game| game.first}.first)
+		top.push(sorted.map{|game| game.first}.second)
+		top.join(' & ')
+	else
+		sorted.map{|game| game.first}.first
+	end
 end
 
 
