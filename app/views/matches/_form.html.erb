@@ -1,4 +1,4 @@
-<%= form_for [@game, @match] do |f| %>
+<%= form_for [@game, @match], :id => 'new-match' do |f| %>
 
 		<%= f.label :match_date %>
 		<%= f.date_field :match_date %><br>

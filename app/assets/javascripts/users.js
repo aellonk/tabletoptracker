@@ -28,12 +28,16 @@ const getUniqueGames = () => {
     
       let newGame = new Game(game);
       let newGameHtml = newGame.gameHTML();
-      $("#user-games").append(newGameHtml);
-    
+      $p.append(newGameHtml);
+
+      $p.append('<thead><tr><th scope="col">Date Played</th><th scope="col">Won?</th></tr></thead>');
+         
     // filter the unique games to show only this user's games
     var gameMatchList = game.matches.filter(match => 
       match.user_id === userId
     );
+
+
 
     // list the user's matches for each unique game
     let gameMatchInfo = gameMatchList.map(match => {

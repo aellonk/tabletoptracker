@@ -33,6 +33,10 @@ class MatchesController < ApplicationController
 		set_game
 		set_match
 		@user = current_user
+		respond_to do |format|
+      			format.html { render :show }      # Render post in HTML format
+      			format.json { render json: @match} # Render post in JSON format
+   			end
 
 	end
 

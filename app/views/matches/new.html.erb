@@ -1,5 +1,9 @@
-<h1>Add a match</h1>
+<h1 class="gameName" data-id="<%= @game.id %>">Add a match for <%= @game.name %></h1>
+
+
 
 <%= render 'form'%>
+<div id="new-match-response">
+	<h1 class="matchId" data-id="<%= @match.id %>"><%= @match.id %></h1>
 
-
+</div>
