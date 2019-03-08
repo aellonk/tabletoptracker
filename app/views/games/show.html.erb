@@ -24,7 +24,9 @@
 				<p class="card-text">Winning Score: <%= match.scythe.winning_score %></p>
 				<p class="card-text">Total Turns: <%= match.scythe.turns %></p>
 				<p class="card-text">Airships? <%= match.scythe.airships %></p>
+				<% if !match.win %>
 				<p class="card-text">Winner: <%= match.scythe.winner %></p>
+				<% end %>
 				<% end %>
 	            </div>
 	          </div>
