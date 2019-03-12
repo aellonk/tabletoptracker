@@ -34,7 +34,13 @@ p {
 .jumbotron-heading {
   font-weight: 300;
 }
-
+.container {
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
 .jumbotron .container {
   max-width: 40rem;
 }
