@@ -39,10 +39,15 @@ const getUniqueGames = () => {
 
 
 
+    // sort the user's matches for each game by date, most recent first
+    let gameMatchInfo = gameMatchList.sort(function(a,b) {
+      return new Date(b.match_date) - new Date(a.match_date);
+    });
+    
     // list the user's matches for each unique game
-    let gameMatchInfo = gameMatchList.map(match => {
+    gameMatchInfo.map(match => {
       $p.append('<tbody><tr><td>' + match.match_date + '</td><td>' + match.win + '</td></tr></tbody>'
-);
+    );
     })
     };
 
@@ -51,24 +56,6 @@ const getUniqueGames = () => {
 
  }
 
-
-// function getMatches() {
-//   $("a.userName").on('click', function (e) {
-//     e.preventDefault();
-//     let userId = parseInt($(".userName").attr("data-id"));
-//    	let userURL = ("/users/" + userId + ".json")
-// 	$.get(userURL, function(data) {
-// 		let $table = $("#user-matches");
-// 		let matches = data.matches;
-//       	for (var i = 0; i < matches.length; i++) {
-//         var match = matches[i];
-//         $table.append('<tr><td>' + match.match_date + '</td><td>' + match.win + '</td></tr>'
-//         );
-//         // find game name from match.game_id 
-//     };
-//     });
-//   });
-// }
 
 class Game {
   constructor(obj) {
